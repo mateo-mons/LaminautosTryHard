@@ -1,0 +1,2 @@
+# LaminautosTryHard
+Primer proyecto POO
