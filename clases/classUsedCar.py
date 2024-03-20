@@ -36,57 +36,5 @@ class AutoUsado:
 
     def eliminar_usado(self):
         pass
-           
-"""
-def menu_usado():
-    print("-- MENU --")
-    print("1. Ingresar vehiculo usado")
-    print("2. Leer informacion de vehiculo usado")
-    print("3. Actualizar informacion de vehiculo usado")
-    print("4. Eliminar informacion de vehiculo usado")
-    print("5. Salir")
-
-
-while True:
-    menu_usado()
-    opcion = input("Opcion: ")
-
-    if opcion == "1":
-        marca = input("Marca del vehiculo: ")
-        modelo = input("Modelo del vehiculo: ")
-        color = input("Color del vehiculo: ")
-        cilindraje = input("Cilindraje del vehiculo: ")
-        kilometraje = input("Kilometraje del vehiculo: ")
-        siniestros = input("Numero de siniestros: ")
-        precio_compra = input("Precio de compra del vehiculo: ")
-        vehiculo = AutoUsado.crear_usado(marca, modelo, color, cilindraje, kilometraje, siniestros, precio_compra)
         
-    elif opcion == "2":
-        print("---------------------------------------------------")
-        vehiculo.leer_usado()
-        print("---------------------------------------------------")
-
-    elif opcion == "3":
-        pass
-
-    elif opcion == "4":
-        pass
-
-    elif opcion == "5":
-        print("Saliendo del programa...")
-        break
-    else:
-        print("Opcion invalida. Intente de nuevo")
-
-
-marca = input("Marca del vehiculo: ")
-modelo = input("Modelo del vehiculo: ")
-color = input("Color del vehiculo: ")
-cilindraje = input("Cilindraje del vehiculo: ")
-kilometraje = input("Kilometraje del vehiculo: ")
-siniestros = input("Numero de siniestros: ")
-precio_compra = input("Precio de compra del vehiculo: ")
-vehiculoU = AutoUsado.crear_usado(marca, modelo, color, cilindraje, kilometraje, siniestros, precio_compra)
-
-AutoUsado.leer_usado(vehiculoU)
-"""
+        

@@ -32,47 +32,5 @@ class AutoNuevo:
 
     def eliminar_nuevo(self):
         pass
-           
-"""
-while True:
-    menu_nuevo()
-    opcion = input("Opcion: ")
-
-    if opcion == "1":
-        marca = input("Marca del auto: ")
-        modelo = input("Modelo del auto: ")
-        color = input("Color del auto: ")
-        cilindraje = input("Cilindraje del auto: ")
-        num_llantas = input("Numero de llantas: ")
-        anio = input("Año del auto: ")
-        precio_compra = input("Precio de compra del auto: ")
-        auto = AutoNuevo.crear_nuevo(marca, modelo, color, cilindraje, precio_compra)
-        
-    elif opcion == "2":
-        print("---------------------------------------------------")
-        auto.leer_nuevo()
-        print("---------------------------------------------------")
-
-    elif opcion == "3":
-        pass
-
-    elif opcion == "4":
-        pass
-
-    elif opcion == "5":
-        print("Saliendo del programa...")
-        break
-    else:
-        print("Opcion invalida. Intente de nuevo")
-
-
-marca = input("Marca del vehiculo: ")
-modelo = input("Modelo del vehiculo: ")
-color = input("Color del vehiculo: ")
-cilindraje = input("Cilindraje del vehiculo: ")
-precio_compra = input("Precio de compra del vehiculo: ")
-vehiculo = AutoNuevo.crear_nuevo(marca, modelo, color, cilindraje, precio_compra)
-
-AutoNuevo.leer_nuevo(vehiculo)
-
-"""
+  
+  
