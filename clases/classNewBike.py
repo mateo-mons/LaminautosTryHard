@@ -32,6 +32,10 @@ class MotoNueva:
 
     def eliminar_nueva(self):
         pass
+
+    def calcular_valor_venta(self):
+            valor_venta = self.precio_compra + (self.precio_compra * 0.35)  # Valor de venta aumentado en un 35%
+            return valor_venta 
            
 
 

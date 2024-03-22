@@ -4,7 +4,7 @@ def main_menu():
     print("2. Consultar informacion de vehiculos")
     print("3. Ingresar usuarios al sistema")
     print("4. Consultar informacion de usuarios")
-    print("5. Consultar valor comercial")
+    print("5. Ventas")
     print("6. Ingresar vehiculo a reparacion")
     print("7. Salir")
 
@@ -42,4 +42,13 @@ def menu_consulta_usuarios():
     print("2. Buscar propietario")
     print("3. Buscar cliente")
     print("4. Buscar mecanico")
+    print("5. Volver")
+
+
+def menu_ventas():
+    print("- Ventas -")
+    print("1. Vender auto nuevo")
+    print("2. Vender auto usado")
+    print("3. Vender moto nueva")
+    print("4. Vender moto usada")
     print("5. Volver")

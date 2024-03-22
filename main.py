@@ -38,7 +38,7 @@ while True:
                 cilindraje = input("Cilindraje del auto: ")
                 num_llantas = input("Numero de llantas: ")
                 anio = input("Año del auto: ")
-                precio_compra = input("Precio de compra del auto: ")
+                precio_compra = float(input("Precio de compra del auto: "))
                 auto = AutoNuevo.crear_nuevo(identificador, marca, modelo, color, cilindraje, num_llantas, anio, precio_compra)
                 autosNuevos.append(auto)
 
@@ -50,10 +50,10 @@ while True:
                 color = input("Color del auto: ")
                 cilindraje = input("Cilindraje del auto: ")
                 num_llantas = input("Numero de llantas: ")
-                anio = input("Año del auto: ")
-                kilometraje = input("Kilometraje del auto: ")
-                siniestros = input("Numero de siniestros: ")
-                precio_compra = input("Precio de compra del auto: ")
+                anio = float(input("Año del auto: "))
+                kilometraje = float(input("Kilometraje del auto: "))
+                siniestros = float(input("Numero de siniestros: "))
+                precio_compra = float(input("Precio de compra del auto: "))
                 auto = AutoUsado.crear_usado(identificador, marca, modelo, color, cilindraje, num_llantas, anio, kilometraje, siniestros, precio_compra)
                 autosUsados.append(auto)
 
@@ -66,7 +66,7 @@ while True:
                 cilindraje = input("Cilindraje de la moto: ")
                 num_llantas = input("Numero de llantas: ")
                 anio = input("Año de la moto: ")
-                precio_compra = input("Precio de compra de la moto: ")
+                precio_compra = float(input("Precio de compra de la moto: "))
                 moto = MotoNueva.crear_nueva(identificador, marca, modelo, color, cilindraje, num_llantas, anio, precio_compra)
                 motosNuevas.append(moto)
 
@@ -78,10 +78,10 @@ while True:
                 color = input("Color de la moto: ")
                 cilindraje = input("Cilindraje de la moto: ")
                 num_llantas = input("Numero de llantas: ")
-                anio = input("Año de la moto: ")
-                kilometraje = input("Kilometraje de la moto: ")
-                siniestros = input("Numero de siniestros: ")
-                precio_compra = input("Precio de compra de la moto: ")
+                anio = float(input("Año de la moto: "))
+                kilometraje = float(input("Kilometraje de la moto: "))
+                siniestros = float(input("Numero de siniestros: "))
+                precio_compra = float(input("Precio de compra de la moto: "))
                 auto = MotoUsada.crear_usada(identificador, marca, modelo, color, cilindraje, num_llantas, anio, kilometraje, siniestros, precio_compra)
                 motosUsadas.append(moto)
             
@@ -246,7 +246,116 @@ while True:
                 print("Opcion incorrecta, intente nuevamente")
 
     elif opcion1 == "5":
-        pass
+        while True:
+            menu_ventas()
+            opcion6 = input("Opcion: ")
+
+            if opcion6 == "1":
+                print("- Venta auto nuevo -")
+                id_ven = input("Identificador vendedor: ")
+                id_car = input("Identificador del auto nuevo que será vendido: ")
+                vendedor_encontrado = None
+                auto_encontrado = None
+
+                for ident in vendedores:
+                    if isinstance(ident, Vendedor) and ident.id_vend == id_ven:
+                        vendedor_encontrado = ident
+                if vendedor_encontrado:
+                
+                    for ident in autosNuevos:
+                        if isinstance(ident, AutoNuevo) and ident.id_nuevo == id_car:
+                            auto_encontrado = ident
+                    if auto_encontrado:
+                        venta = auto_encontrado.calcular_valor_venta()
+                        print(f"Venta del vehiculo con id {id_car} es de ${venta}")
+                        comision = vendedor_encontrado.calcular_comision(auto_encontrado)
+                        print(f"La comision del vendedor con id {id_ven} es de ${comision}")
+                    else:
+                        print("El vehiculo no esta en el sistema, verifique")
+                else:
+                    print("El vendedor no está en el sistema, verifique")
+                
+            elif opcion6 == "2":
+                print("- Venta auto usado -")
+                id_ven = input("Identificador vendedor: ")
+                id_car = input("Identificador del auto usado que será vendido: ")
+                vendedor_encontrado = None
+                auto_encontrado = None
+
+                for ident in vendedores:
+                    if isinstance(ident, Vendedor) and ident.id_vend == id_ven:
+                        vendedor_encontrado = ident
+                if vendedor_encontrado:
+                
+                    for ident in autosUsados:
+                        if isinstance(ident, AutoUsado) and ident.id_usado == id_car:
+                            auto_encontrado = ident
+                    if auto_encontrado:
+                        venta = auto_encontrado.calcular_valor_venta()
+                        print(f"Venta del vehiculo con id {id_car} es de ${venta}")
+                        comision = vendedor_encontrado.calcular_comision(auto_encontrado)
+                        print(f"La comision del vendedor con id {id_ven} es de ${comision}")
+                    else:
+                        print("El vehiculo no esta en el sistema, verifique")
+                else:
+                    print("El vendedor no está en el sistema, verifique")
+
+            elif opcion6 == "3":
+                print("- Venta moto nueva -")
+                id_ven = input("Identificador vendedor: ")
+                id_mot = input("Identificador de  la moto nueva que será vendida: ")
+                vendedor_encontrado = None
+                moto_encontrada = None
+
+                for ident in vendedores:
+                    if isinstance(ident, Vendedor) and ident.id_vend == id_ven:
+                        vendedor_encontrado = ident
+                if vendedor_encontrado:
+                
+                    for ident in motosNuevas:
+                        if isinstance(ident, MotoNueva) and ident.id_nueva == id_mot:
+                            moto_encontrada = ident
+                    if moto_encontrada:
+                        venta = moto_encontrada.calcular_valor_venta()
+                        print(f"Venta de la moto con id {id_mot} es de ${venta}")
+                        comision = vendedor_encontrado.calcular_comision(auto_encontrado)
+                        print(f"La comision del vendedor con id {id_ven} es de ${comision}")
+                    else:
+                        print("La moto no esta en el sistema, verifique")
+                else:
+                    print("El vendedor no está en el sistema, verifique")
+
+            elif opcion6 == "4":
+                print("- Venta moto usada -")
+                id_ven = input("Identificador vendedor: ")
+                id_mot = input("Identificador de  la moto usada que será vendida: ")
+                vendedor_encontrado = None
+                moto_encontrada = None
+
+                for ident in vendedores:
+                    if isinstance(ident, Vendedor) and ident.id_vend == id_ven:
+                        vendedor_encontrado = ident
+                if vendedor_encontrado:
+                
+                    for ident in motosUsadas:
+                        if isinstance(ident, MotoUsada) and ident.id_usada == id_mot:
+                            moto_encontrada = ident
+                    if moto_encontrada:
+                        venta = moto_encontrada.calcular_valor_venta()
+                        print(f"Venta de la moto con id {id_mot} es de ${venta}")
+                        comision = vendedor_encontrado.calcular_comision(auto_encontrado)
+                        print(f"La comision del vendedor con id {id_ven} es de ${comision}")
+                    else:
+                        print("La moto no esta en el sistema, verifique")
+                else:
+                    print("El vendedor no está en el sistema, verifique")
+
+            elif opcion6 == "5":
+                print("...")
+                break
+
+            else:
+                print("opcion incorrecta, intente nuevamente")
 
     elif opcion1 == "6":
         pass

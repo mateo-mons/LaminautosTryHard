@@ -37,4 +37,15 @@ class AutoUsado:
     def eliminar_usado(self):
         pass
         
-        
+    def calcular_valor_venta(self):
+            valor_venta = self.precio_compra + (self.precio_compra * 0.35)  # Valor de venta aumentado en un 35%
+            valor_venta -= valor_venta * (self.siniestros * 0.05)  # Descuento por siniestros
+            valor_venta -= valor_venta * ((2024 - self.anio) * 0.05)  # Descuento por años anteriores a 2015
+
+            if self.anio < 2005:
+                return 0  # No se realiza la transacción
+
+            if self.kilometraje > 100000:
+                valor_venta -= valor_venta * 0.10  # Descuento por kilometraje excesivo
+
+            return valor_venta
