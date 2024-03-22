@@ -18,6 +18,8 @@ propietarios = []
 vendedores = []
 clientes = []
 mecanicos = []
+ordenes_servicio = []
+
 
 
 while True:
@@ -358,7 +360,45 @@ while True:
                 print("opcion incorrecta, intente nuevamente")
 
     elif opcion1 == "6":
-        pass
+        while True:
+            menu_reparaciones()
+            opcion7 = input("Opcion: ")
+
+            if opcion7 == "1":
+                print("- Reparacion auto nuevo -")
+                id_cli = input("Identificador cliente: ")
+                id_veh = input("Identificador del auto: ")
+                descripcion_problema = input("Descripcion del problema: ")
+                print("Seleccione estado de reparacion")
+                for i, estado in enumerate(OrdenDeServicio.estados_reparacion):
+                    print(f"{i+1}. {estado}")
+                estado_reparacion = input("Opcion estado: ")
+                if estado_reparacion < "1" or estado_reparacion > len(OrdenDeServicio.estados_reparacion):
+                    print("Opción no válida.")
+                
+                OrdenDeServicio.estados_reparacion[estado_reparacion - 1]
+                print(estado)
+
+                orden_servicio = OrdenDeServicio(id_cli, id_veh, descripcion_problema, estado_reparacion)
+                ordenes_servicio.append(orden_servicio)
+                print("Vehículo ingresado a reparación.")
+
+            elif opcion7 == "2":
+                print("- Reparacion auto usado -")
+
+            elif opcion7 == "2":
+                print("- Reparacion moto nueva -")
+
+            elif opcion7 == "2":
+                print("- Reparacion moto usada -")
+
+            elif opcion7 == "5":
+                print("...")
+                break
+            
+            else:
+                print("Opcion incorrecta, intente nuevamente")
+
 
     elif opcion1 == "7":
         print("Hasta pronto")

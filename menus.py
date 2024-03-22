@@ -52,3 +52,12 @@ def menu_ventas():
     print("3. Vender moto nueva")
     print("4. Vender moto usada")
     print("5. Volver")
+
+
+def menu_reparaciones():
+    print("- Reparaciones -")
+    print("1. Reparar auto nuevo")
+    print("2. Reparar auto usado")
+    print("3. Reparar moto nueva")
+    print("4. Reparar moto usada")
+    print("5. Volver")
