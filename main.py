@@ -25,7 +25,8 @@ newauto1 = AutoNuevo(101,"Chevrolet", "Aveo", "Morado mate", 1600, 4, 2024, 2500
 usedauto1 = AutoUsado(102,"Chevrolet", "Camaro", "Amarillo mate", 2000, 4, 2010, 50000, 1, 50000000)
 vendedor1 = Vendedor(14,"Pedro",14,"321")
 client1 = Cliente(10, "Juan", 5896, "32454564", 2)
-mec1 = Mecanico(5, "Donchi", "23426578", "Pintor", [0])
+mec1 = Mecanico(5, "Donchi", "23426578", "Pintor",[0])
+autosNuevos.append(newauto1)
 clientes.append(client1)
 mecanicos.append(mec1)
 vendedores.append(vendedor1)
@@ -380,7 +381,6 @@ while True:
 
             else:
                 print("opcion invalida, intente nuevamente")
-    
 
     if opcion1 == "6":
         while True:

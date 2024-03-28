@@ -6,18 +6,15 @@ class Mecanico:
         self.nombre = nombre
         self.telefono = telefono
         self.especialidad = especialidad
-        if estado in self.estados_mec:
-            self.estado = estado
-        else:
-            print("Estado no válido.")
-    
+        self.estado = estado
+
     def leer_nuevo(self):
         print("----------------------------------------")
         print("Detalles de mecanico...")
         print("Nombre:", self.nombre)
         print("Telefono de contacto:", self.telefono)
         print("Especialidad:", self.especialidad)
-        print("Estado: ", self.estado)
+        print("Estado: ", self.estados_mec[self.estado[0]])
         print("----------------------------------------")
 
     def actualizar_nuevo(self):
