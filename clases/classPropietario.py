@@ -5,11 +5,6 @@ class Propietario:
         self.nombre = nombre
         self.num_ident = num_ident
         self.telefono = telefono
-
-    def crear_nuevo(id_prop, nombre, num_ident, telefono):
-        nuevo = Propietario(id_prop, nombre, num_ident, telefono)
-        print("Propietario ingresado al sistema exitosamente! \n")
-        return nuevo
     
     def leer_nuevo(self):
         print("----------------------------------------")

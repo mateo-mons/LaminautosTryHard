@@ -11,12 +11,7 @@ class MotoUsada:
         self.kilometraje = kilometraje
         self.siniestros = siniestros
         self.precio_compra = precio_compra
-
-    def crear_usada(id_usada, marca, modelo, color, cilindraje, num_llantas, anio, kilometraje, siniestros, precio_compra):
-        usada = MotoUsada(id_usada, marca, modelo, color, cilindraje, num_llantas, anio, kilometraje, siniestros, precio_compra)
-        print("Moto usada ingresada al sistema exitosamente! \n")
-        return usada
-    
+  
     def leer_usada(self):
         print("----------------------------------------")
         print("Detalles de la moto...")

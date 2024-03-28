@@ -9,11 +9,6 @@ class MotoNueva:
         self.num_llantas = num_llantas
         self.anio = anio
         self.precio_compra = precio_compra
-
-    def crear_nueva(id_nueva, marca, modelo, color, cilindraje, num_llantas, anio, precio_compra):
-        nueva = MotoNueva(id_nueva, marca, modelo, color, cilindraje, num_llantas, anio, precio_compra)
-        print("Moto nueva ingresada al sistema exitosamente! \n")
-        return nueva
     
     def leer_nueva(self):
         print("----------------------------------------")

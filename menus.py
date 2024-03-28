@@ -1,5 +1,5 @@
 def main_menu():
-    print("****** LAMINAUTOS BIIIITCH ******")
+    print("****** LAMINAUTOS ******")
     print("1. Ingresar vehiculo al sistema")
     print("2. Consultar informacion de vehiculos")
     print("3. Ingresar usuarios al sistema")
@@ -30,10 +30,9 @@ def menu_consulta_vehiculos():
 def menu_ingresa_usuarios():
     print("- Ingreso de usuarios -")
     print("1. Ingresar vendedor")
-    print("2. Ingresar propietario")
-    print("3. Ingresar cliente")
-    print("4. Ingresar mecanico")
-    print("5. Volver")
+    print("2. Ingresar cliente")
+    print("3. Ingresar mecanico")
+    print("4. Volver")
 
 
 def menu_consulta_usuarios():

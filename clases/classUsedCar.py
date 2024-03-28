@@ -11,11 +11,6 @@ class AutoUsado:
         self.kilometraje = kilometraje
         self.siniestros = siniestros
         self.precio_compra = precio_compra
-
-    def crear_usado(id_usado, marca, modelo, color, cilindraje, num_llantas, anio, kilometraje, siniestros, precio_compra):
-        usado = AutoUsado(id_usado, marca, modelo, color, cilindraje, num_llantas, anio, kilometraje, siniestros, precio_compra)
-        print("Auto usado ingresado al sistema exitosamente! \n")
-        return usado
     
     def leer_usado(self):
         print("----------------------------------------")

@@ -1,22 +1,23 @@
 class Mecanico:
+    estados_mec = ["Libre", "Ocupado"]
 
-    def __init__(self, id_mec, nombre, telefono, especialidad):
+    def __init__(self, id_mec, nombre, telefono, especialidad, estado):
         self.id_mec = id_mec
         self.nombre = nombre
         self.telefono = telefono
         self.especialidad = especialidad
-
-    def crear_nuevo(id_mec, nombre, telefono, especialidad):
-        nuevo = Mecanico(id_mec, nombre, telefono, especialidad)
-        print("Mecanico ingresado al sistema exitosamente! \n")
-        return nuevo
+        if estado in self.estados_mec:
+            self.estado = estado
+        else:
+            print("Estado no válido.")
     
     def leer_nuevo(self):
         print("----------------------------------------")
-        print("Detalles de propietario...")
+        print("Detalles de mecanico...")
         print("Nombre:", self.nombre)
         print("Telefono de contacto:", self.telefono)
         print("Especialidad:", self.especialidad)
+        print("Estado: ", self.estado)
         print("----------------------------------------")
 
     def actualizar_nuevo(self):
