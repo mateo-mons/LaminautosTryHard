@@ -70,7 +70,7 @@ while True:
                 auto = AutoUsado(identificador, marca, modelo, color, cilindraje, num_llantas, anio, kilometraje, siniestros, precio_compra)
                 autosUsados.append(auto)
 
-                print("- Ingresa propietario anterior -")
+                print("\n- Ingresa propietario anterior -")
                 identificador = int(input("Identificador del propietario: "))
                 nombre = input("Nombre: ")
                 num_ident = input("Numero de identificacion: ")
@@ -106,7 +106,7 @@ while True:
                 auto = MotoUsada(identificador, marca, modelo, color, cilindraje, num_llantas, anio, kilometraje, siniestros, precio_compra)
                 motosUsadas.append(moto)
 
-                print("- Ingresa propietario anterior -")
+                print("\n- Ingresa propietario anterior -")
                 identificador = int(input("Identificador del propietario: "))
                 nombre = input("Nombre: ")
                 num_ident = input("Numero de identificacion: ")
