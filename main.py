@@ -5,13 +5,15 @@ from clases.classUsedBike import *
 from clases.classVendedor import *
 from clases.classPropietario import *
 from clases.classCliente import *
+from clases.classClientCar import *
 from clases.classMecanico import *
 from clases.classOrdenDeServicio import *
 from menus import *
 
-# LISTAS PARA ALMACENAR INFORMACION MIENTRAS #
+# LISTAS PARA ALMACENAR INFORMACION DE OBJETOS #
 autosNuevos = []
 autosUsados = []
+autosClientes = []
 motosNuevas = []
 motosUsadas = []
 propietarios = []
@@ -19,21 +21,49 @@ vendedores = []
 clientes = []
 mecanicos = []
 ordenes_servicio = []
-Placa_vehiculos = []
 
+
+# OBJETOS QUEMADOS PARA TEST #
 newauto1 = AutoNuevo(101,"Chevrolet", "Aveo", "Morado mate", 1600, 4, 2024, 25000000)
 usedauto1 = AutoUsado(102,"Chevrolet", "Camaro", "Amarillo mate", 2000, 4, 2010, 50000, 1, 50000000)
+usedauto2 = AutoUsado(103,"Kia", "Sportage", "Blanco mate", 2000, 4, 2015, 70000, 0, 56000000)
 vendedor1 = Vendedor(14,"Pedro",14,"321")
 client1 = Cliente(10, "Juan", 5896, "32454564", 2)
-mec1 = Mecanico(5, "Donchi", "23426578", "Pintor",[0])
+client2 = Cliente(11, "Pedro", 5897, "32459756", 1)
+mec1 = Mecanico(5, "Donchi", "23426578", "Pintor")
+mec2 = Mecanico(3, "Carlos", "54678965", "Latonero")
+mec3 = Mecanico(1, "Armando", "86756752", "Ensamblador", "Ocupado")
+order1 = OrdenDeServicio(1, 11, 103, "Choque lateral")
+order2 = OrdenDeServicio(2, 10, 102, "Falla de motor")
+clientCar1 = AutoCliente(20, "Ford", "Raptor", "Rojo", 2500, 4, 2018)
+clientCar2 = AutoCliente(15, "Mazda", "Mazda 2 sedan", "Blanco", 1800, 4, 2019)
+autosClientes.append(clientCar1)
+autosClientes.append(clientCar2)
 autosNuevos.append(newauto1)
 clientes.append(client1)
+clientes.append(client2)
 mecanicos.append(mec1)
+mecanicos.append(mec2)
+mecanicos.append(mec3)
 vendedores.append(vendedor1)
 autosUsados.append(usedauto1)
+autosUsados.append(usedauto2)
+ordenes_servicio.append(order1)
 venta = usedauto1.calcular_valor_venta()
 print(venta)
 
+
+# FUNCIONES #
+def asignar_orden_servicio_mecanico(orden_servicio, mecanicos):
+    for mecanico in mecanicos:
+        if mecanico.estado == "Libre":
+            mecanico.tomar_orden_servicio(orden_servicio)
+            return True
+    print("No hay mecánicos disponibles en este momento.")
+    return False
+
+
+# PROGRAMA PRINCIPAL #
 while True:
     main_menu()
     opcion1 = input("Opcion: ")
@@ -116,6 +146,7 @@ while True:
                 propietarios.append(propietario)
             
             elif opcion2 == "5":
+                print("...")
                 break
 
             else:
@@ -196,17 +227,33 @@ while True:
                 cliente = Cliente(identificador, nombre, num_ident, telefono, num_vehiculos)
                 clientes.append(cliente)
 
+                # Implementacion del ingreso de los vehiculos de los clientes dependiendo del numero que tengan de estos #
+
             elif opcion4 == "3":
                 print("- Mecanico -")
                 identificador = int(input("Identificador del mecanico: "))
                 nombre = input("Nombre: ")
                 telefono = input("Numero de telefono: ")
-                especialidad = input("Especialidad: ")
-                estado = "libre"
-                mecanico = Mecanico(identificador, nombre, telefono, especialidad, estado)
+                print("* Seleccione especialidad del mecanico *")
+                print("1. Latonero")
+                print("2. Pintor")
+                print("3. Ensamblador")
+                opcionEsp = input("Opción: ")
+
+                if opcionEsp == "1":
+                    especialidad = "Latonero"
+                elif opcionEsp == "2":
+                    especialidad = "Pintor"
+                elif opcionEsp == "3":
+                    especialidad = "Ensamblador"
+                else:
+                    print("Opción no válida.")
+
+                mecanico = Mecanico(identificador, nombre, telefono, especialidad)
                 mecanicos.append(mecanico)
 
             elif opcion4 == "4":
+                print("...")
                 break
 
             else:
@@ -258,6 +305,7 @@ while True:
                     print("El vendedor solicitado no existe\n")
 
             elif opcion5 == "5":
+                print("...")
                 break
 
             else:
@@ -377,6 +425,7 @@ while True:
                     break
 
             elif opcion6 == "5":
+                print("...")
                 break
 
             else:
@@ -384,24 +433,15 @@ while True:
 
     if opcion1 == "6":
         while True:
-            menu_reparaciones()
+            menu_ordenesS()
             opcion7 = input("Opcion: ")
 
             if opcion7 == "1":
-                print("- Registrar auto nuevo -")
+                print("- Crea una orden -")
+                id_ord = int(input("Ingresa identificador de la orden: "))
                 id_cli = int(input("Identificador cliente: "))
                 id_veh = int(input("Identificador del auto: "))
                 descripcion_problema = input("Descripcion del problema: ")
-                print("Seleccione estado de reparacion")
-                for i, estado in enumerate(OrdenDeServicio.estados_reparacion):
-                    print(f"{i+1}. {estado}")
-
-                estado_reparacion = int(input("Opcion estado: "))
-                if estado_reparacion < 1 or estado_reparacion > len(OrdenDeServicio.estados_reparacion):
-                    print("Opción no válida.")
-                
-                OrdenDeServicio.estados_reparacion[estado_reparacion - 1]
-                          
                 cliente_encontrado = None
                 auto_encontrado = None
 
@@ -409,147 +449,56 @@ while True:
                     if isinstance(ident, Cliente) and ident.id_cliente == id_cli:
                         cliente_encontrado = ident
                 if cliente_encontrado:
-                    print(f"Cliente con id: {id_cli}")                
-                    for ident in autosNuevos:
-                        if isinstance(ident, AutoNuevo) and ident.id_nuevo == id_veh:
+                    print("-------------------------------------------------------------------")
+                    print(f"Cliente: {cliente_encontrado.nombre}")                
+                    for ident in autosClientes:
+                        if isinstance(ident, AutoCliente) and ident.id_car == id_veh:
                             auto_encontrado = ident
                     if auto_encontrado:
-                        print(f"Vehiculo con id: {id_veh}")
+                        print(f"Vehiculo: {auto_encontrado.marca}")
+                        auto_encontrado.actualizar_estado_vehiculo()
+                        if auto_encontrado.estado == "En reparacion":
+                            orden_servicio = OrdenDeServicio(id_ord, id_cli, id_veh, descripcion_problema)
+                            ordenes_servicio.append(orden_servicio)
+                            orden_servicio.ver_orden() 
+
+                        # Asignar orden de servicio a un mecánico
+                        asignar = asignar_orden_servicio_mecanico(orden_servicio, mecanicos)
+
+                        if asignar:
+                            print("\nEstado actual de los mecánicos:")
+                            for mecanico in mecanicos:
+                                print(f"{mecanico.nombre}: {mecanico.estado}")
+                        print("----------------------------------------")
+                              
                     else:
                         print("El vehiculo no esta en el sistema, verifique")
                         break
                 else:
                     print("El cliente no está en el sistema, verifique")
                     break
-                
-                orden_servicio = OrdenDeServicio(id_cli, id_veh, descripcion_problema, estado_reparacion)
-                ordenes_servicio.append(orden_servicio)
-                print("Vehículo registrado...")
-                orden_servicio.ver_orden()
-
+            
             elif opcion7 == "2":
-                print("- Registrar auto usado -")
-                id_cli = int(input("Identificador cliente: "))
-                id_veh = int(input("Identificador del auto: "))
-                descripcion_problema = input("Descripcion del problema: ")
-                print("Seleccione estado de reparacion")
-                for i, estado in enumerate(OrdenDeServicio.estados_reparacion):
-                    print(f"{i+1}. {estado}")
+                print("- Busca una orden -")
+                id_ord = int(input("Identificador de la orden: "))
+                orden_encontrada = None
 
-                estado_reparacion = int(input("Opcion estado: "))
-                if estado_reparacion < 1 or estado_reparacion > len(OrdenDeServicio.estados_reparacion):
-                    print("Opción no válida.")
-                
-                OrdenDeServicio.estados_reparacion[estado_reparacion - 1]
-                          
-                cliente_encontrado = None
-                auto_encontrado = None
-
-                for ident in clientes:
-                    if isinstance(ident, Cliente) and ident.id_cliente == id_cli:
-                        cliente_encontrado = ident
-                if cliente_encontrado:
-                    print(f"Cliente con id: {id_cli}")                
-                    for ident in autosUsados:
-                        if isinstance(ident, AutoUsado) and ident.id_usado == id_veh:
-                            auto_encontrado = ident
-                    if auto_encontrado:
-                        print(f"Vehiculo con id: {id_veh}")
-                    else:
-                        print("El vehiculo no esta en el sistema, verifique")
-                        break
+                for ident in ordenes_servicio:
+                    if isinstance(ident, OrdenDeServicio) and ident.id_orden == id_ord:
+                        orden_encontrada = ident
+                if orden_encontrada:
+                    orden_encontrada.ver_orden()
+                    orden_encontrada.actualizar_estado_orden()
+                    orden_encontrada.ver_orden()
+                    
                 else:
-                    print("El cliente no está en el sistema, verifique")
+                    print("La orden no esta registrada en el sistema, verifique")
                     break
-                
-                orden_servicio = OrdenDeServicio(id_cli, id_veh, descripcion_problema, estado_reparacion)
-                ordenes_servicio.append(orden_servicio)
-                print("Vehículo registrado...")
-                orden_servicio.ver_orden()
 
             elif opcion7 == "3":
-                print("- Registrar moto nueva -")
-                id_cli = int(input("Identificador cliente: "))
-                id_veh = int(input("Identificador de la moto: "))
-                descripcion_problema = input("Descripcion del problema: ")
-                print("Seleccione estado de reparacion")
-                for i, estado in enumerate(OrdenDeServicio.estados_reparacion):
-                    print(f"{i+1}. {estado}")
-
-                estado_reparacion = int(input("Opcion estado: "))
-                if estado_reparacion < 1 or estado_reparacion > len(OrdenDeServicio.estados_reparacion):
-                    print("Opción no válida.")
-                
-                OrdenDeServicio.estados_reparacion[estado_reparacion - 1]
-                          
-                cliente_encontrado = None
-                auto_encontrado = None
-
-                for ident in clientes:
-                    if isinstance(ident, Cliente) and ident.id_cliente == id_cli:
-                        cliente_encontrado = ident
-                if cliente_encontrado:
-                    print(f"Cliente con id: {id_cli}")                
-                    for ident in motosNuevas:
-                        if isinstance(ident, MotoNueva) and ident.id_nueva == id_veh:
-                            auto_encontrado = ident
-                    if auto_encontrado:
-                        print(f"Vehiculo con id: {id_veh}")
-                    else:
-                        print("El vehiculo no esta en el sistema, verifique")
-                        break
-                else:
-                    print("El cliente no está en el sistema, verifique")
-                    break
-                
-                orden_servicio = OrdenDeServicio(id_cli, id_veh, descripcion_problema, estado_reparacion)
-                ordenes_servicio.append(orden_servicio)
-                print("Vehículo registrado...")
-                orden_servicio.ver_orden()
-
-            elif opcion7 == "4":
-                print("- Registrar moto usada -")
-                id_cli = int(input("Identificador cliente: "))
-                id_veh = int(input("Identificador de la moto: "))
-                descripcion_problema = input("Descripcion del problema: ")
-                print("Seleccione estado de reparacion")
-                for i, estado in enumerate(OrdenDeServicio.estados_reparacion):
-                    print(f"{i+1}. {estado}")
-
-                estado_reparacion = int(input("Opcion estado: "))
-                if estado_reparacion < 1 or estado_reparacion > len(OrdenDeServicio.estados_reparacion):
-                    print("Opción no válida.")
-                
-                OrdenDeServicio.estados_reparacion[estado_reparacion - 1]
-                          
-                cliente_encontrado = None
-                auto_encontrado = None
-
-                for ident in clientes:
-                    if isinstance(ident, Cliente) and ident.id_cliente == id_cli:
-                        cliente_encontrado = ident
-                if cliente_encontrado:
-                    print(f"Cliente con id: {id_cli}")                
-                    for ident in motosUsadas:
-                        if isinstance(ident, MotoUsada) and ident.id_usada == id_veh:
-                            auto_encontrado = ident
-                    if auto_encontrado:
-                        print(f"Vehiculo con id: {id_veh}")
-                    else:
-                        print("El vehiculo no esta en el sistema, verifique")
-                        break
-                else:
-                    print("El cliente no está en el sistema, verifique")
-                    break
-                
-                orden_servicio = OrdenDeServicio(id_cli, id_veh, descripcion_problema, estado_reparacion)
-                ordenes_servicio.append(orden_servicio)
-                print("Vehículo registrado...")
-                orden_servicio.ver_orden()
-
-            elif opcion7 == "5":
+                print("...")
                 break
-            
+
             else:
                 print("Opcion invalida, intente nuevamente")
 

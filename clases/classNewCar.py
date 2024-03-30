@@ -1,6 +1,6 @@
 class AutoNuevo:
 
-    def __init__(self, id_nuevo, marca, modelo, color, cilindraje, num_llantas, anio, precio_compra):
+    def __init__(self, id_nuevo, marca, modelo, color, cilindraje, num_llantas, anio, precio_compra, estado="Para la venta"):
         self.id_nuevo = id_nuevo
         self.marca = marca
         self.modelo = modelo
@@ -9,6 +9,7 @@ class AutoNuevo:
         self.num_llantas = num_llantas
         self.anio = anio
         self.precio_compra = precio_compra
+        self.estado = estado
    
     def leer_nuevo(self):
         print("----------------------------------------")
@@ -20,6 +21,7 @@ class AutoNuevo:
         print("Numero de llantas:", self.num_llantas)
         print("Año:", self.anio)
         print("Precio de compra:", self.precio_compra)
+        print("Estado:", self.estado)
         print("----------------------------------------")
 
     def actualizar_nuevo(self):

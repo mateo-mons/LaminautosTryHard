@@ -5,7 +5,7 @@ def main_menu():
     print("3. Ingresar usuarios al sistema")
     print("4. Consultar informacion de usuarios")
     print("5. Ventas")
-    print("6. Ingresar vehiculo a reparacion")
+    print("6. Ordenes de servicio")
     print("7. Salir")
 
 
@@ -60,3 +60,10 @@ def menu_reparaciones():
     print("3. Reparar moto nueva")
     print("4. Reparar moto usada")
     print("5. Volver")
+
+
+def menu_ordenesS():
+    print("- Ordenes de servicio -")
+    print("1. Crear orden")
+    print("2. Actualizar estado de orden de servicio")
+    print("3. Volver")
