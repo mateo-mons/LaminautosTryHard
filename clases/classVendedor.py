@@ -26,18 +26,14 @@ class Vendedor:
         pass
 
     def calcular_comision(self, vehiculo):
-        if isinstance(vehiculo, AutoUsado):
-            utilidad_venta = vehiculo.calcular_valor_venta() - vehiculo.precio_compra
-            comision = utilidad_venta * 0.07  # 7% de la utilidad de venta para autos usados
-        elif isinstance(vehiculo, AutoNuevo):
-            utilidad_venta = vehiculo.calcular_valor_venta() - vehiculo.precio_compra
-            comision = utilidad_venta * 0.05  # 5% de la utilidad de venta para autos nuevos
-        elif isinstance(vehiculo, MotoUsada):
-            utilidad_venta = vehiculo.calcular_valor_venta() - vehiculo.precio_compra
-            comision = utilidad_venta * 0.07  # 7% de la utilidad de venta para motos usadas
-        elif isinstance(vehiculo, MotoNueva):
-            utilidad_venta = vehiculo.calcular_valor_venta() - vehiculo.precio_compra
-            comision = utilidad_venta * 0.05  # 5% de la utilidad de venta para motos nuevas
+        if isinstance(vehiculo, AutoUsado):  # Si es un auto usado
+            comision = 0.07 * (vehiculo.calcular_valor_comercial() - vehiculo.precio_compra)  # Comisión del 7% sobre la utilidad
+        elif isinstance(vehiculo, AutoNuevo):  # Si es un auto nuevo
+            comision = 0.05 * (vehiculo.calcular_valor_venta() - vehiculo.precio_compra)  # Comisión del 5% sobre la utilidad
 
+        elif isinstance(vehiculo, MotoUsada):  # Si es una moto usada
+            comision = 0.07 * (vehiculo.calcular_valor_comercial() - vehiculo.precio_compra)  # Comisión del 7% sobre la utilidad
+        elif isinstance(vehiculo, MotoNueva):  # Si es una moto nueva
+            comision = 0.05 * (vehiculo.calcular_valor_venta() - vehiculo.precio_compra)  # Comisión del 5% sobre la utilidad
 
         return comision

@@ -27,7 +27,6 @@ class AutoCliente:
         print("Estado: ", self.estado)
         print("----------------------------------------")
 
-
     def cambiar_estado(self, nuevo_estado):
         if nuevo_estado in self.estados_vehiculo:
             self.estado = nuevo_estado

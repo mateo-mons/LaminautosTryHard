@@ -29,8 +29,8 @@ class MotoNueva:
         pass
 
     def calcular_valor_venta(self):
-            valor_venta = self.precio_compra + (self.precio_compra * 0.35)  # Valor de venta aumentado en un 35%
-            return valor_venta 
+        valor_venta = 1.35 * self.precio_compra  # Valor de venta es 35% más del valor de compra
+        return valor_venta 
            
 
 

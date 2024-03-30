@@ -13,13 +13,10 @@ class OrdenDeServicio:
             self.estado_reparacion = estado_reparacion
 
     def ver_orden(self):
-        print("----------------------------------------")
-        print("Detalles de orden de servicio...")
-        print("Cliente:", self.cliente)
-        print("Vehículo:", self.vehiculo)
+        print("Identificador del cliente:", self.cliente)
+        print("Identificador del vehículo:", self.vehiculo)
         print("Descripción del problema:", self.descripcion_problema)
-        print("Estado de reparación: ", self.estado_reparacion)
-        print("----------------------------------------")
+        print("Estado: ", self.estado_reparacion)
 
     def cambiar_estado(self, nuevo_estado):
         if nuevo_estado in self.estados_reparacion:

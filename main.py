@@ -1,3 +1,4 @@
+import os
 from clases.classNewCar import *
 from clases.classUsedCar import *
 from clases.classNewBike import *
@@ -24,10 +25,16 @@ ordenes_servicio = []
 
 
 # OBJETOS QUEMADOS PARA TEST #
-newauto1 = AutoNuevo(101,"Chevrolet", "Aveo", "Morado mate", 1600, 4, 2024, 25000000)
+newauto1 = AutoNuevo(101, "Chevrolet", "Aveo", "Morado mate", 1600, 4, 2024, 25000000)
+newauto2 = AutoNuevo(102, "Renol", "Koleos", "Gris mate", 2000, 4, 2024, 50000000)
 usedauto1 = AutoUsado(102,"Chevrolet", "Camaro", "Amarillo mate", 2000, 4, 2010, 50000, 1, 50000000)
 usedauto2 = AutoUsado(103,"Kia", "Sportage", "Blanco mate", 2000, 4, 2015, 70000, 0, 56000000)
-vendedor1 = Vendedor(14,"Pedro",14,"321")
+newbike1 = MotoNueva(10, "Ducati", "Icon", "Negra", 125, 2, 2024, 8000000)
+newbike2 = MotoNueva(11, "AKT", "NKD", "Roja", 125, 2, 2023, 7500000)
+usedbike1 = MotoUsada(9, "Kawasaki", "KX112", "Negra", 200, 2, 2017, 30000, 0, 9000000)
+usedbike2 = MotoUsada(6, "Scorpa", "SC-F", "Naranja", 150, 2, 2018, 38000, 1, 8500000)
+vendedor1 = Vendedor(14,"Pedro Mejia",14,"321")
+vendedor2 = Vendedor(15,"Alejandro Magno",144,"3212311")
 client1 = Cliente(10, "Juan", 5896, "32454564", 2)
 client2 = Cliente(11, "Pedro", 5897, "32459756", 1)
 mec1 = Mecanico(5, "Donchi", "23426578", "Pintor")
@@ -40,18 +47,22 @@ clientCar2 = AutoCliente(15, "Mazda", "Mazda 2 sedan", "Blanco", 1800, 4, 2019)
 autosClientes.append(clientCar1)
 autosClientes.append(clientCar2)
 autosNuevos.append(newauto1)
+autosNuevos.append(newauto2)
+motosNuevas.append(newbike1)
+motosNuevas.append(newbike2)
+motosUsadas.append(usedbike1)
+motosUsadas.append(usedbike2)
 clientes.append(client1)
 clientes.append(client2)
 mecanicos.append(mec1)
 mecanicos.append(mec2)
 mecanicos.append(mec3)
 vendedores.append(vendedor1)
+vendedores.append(vendedor2)
 autosUsados.append(usedauto1)
 autosUsados.append(usedauto2)
 ordenes_servicio.append(order1)
-venta = usedauto1.calcular_valor_venta()
-print(venta)
-
+ordenes_servicio.append(order2)
 
 # FUNCIONES #
 def asignar_orden_servicio_mecanico(orden_servicio, mecanicos):
@@ -62,9 +73,9 @@ def asignar_orden_servicio_mecanico(orden_servicio, mecanicos):
     print("No hay mecánicos disponibles en este momento.")
     return False
 
-
 # PROGRAMA PRINCIPAL #
 while True:
+    os.system("clear")
     main_menu()
     opcion1 = input("Opcion: ")
 
@@ -227,7 +238,18 @@ while True:
                 cliente = Cliente(identificador, nombre, num_ident, telefono, num_vehiculos)
                 clientes.append(cliente)
 
-                # Implementacion del ingreso de los vehiculos de los clientes dependiendo del numero que tengan de estos #
+                # Ingreso de los vehiculos de los clientes dependiendo del numero que tengan de estos #
+                for vehiculo in range(num_vehiculos):
+                    print(f"\nIngresando datos para el vehículo {vehiculo + 1}:")
+                    id_car = int(input("Ingresa identificador del vehiculo: "))
+                    marca = input("Ingresa la marca del vehiculo: ")
+                    modelo = input("Ingresa el modelo del vehiculo: ")
+                    color = input("Ingrese color del vehiculo: ")
+                    cilindraje = int(input("Ingresa el cilindraje del vehiculo: "))
+                    num_llantas = int(input("Ingresa el numero de llantas del vehiculo: "))
+                    anio = int(input("Ingresa año del vehiculo: "))
+                    autoC = AutoCliente(id_car, marca, modelo, color, cilindraje, num_llantas, anio)
+                    autosClientes.append(autoC)
 
             elif opcion4 == "3":
                 print("- Mecanico -")
@@ -333,9 +355,11 @@ while True:
                             auto_encontrado = ident
                     if auto_encontrado:
                         venta = auto_encontrado.calcular_valor_venta()
-                        print(f"Venta del vehiculo con id {id_car} es de ${venta}")
+                        print("----------------------------------------")
+                        print(f"+ Vehiculo {auto_encontrado.marca} identificado con {id_car}\nValor de venta: ${venta}\n")
                         comision = vendedor_encontrado.calcular_comision(auto_encontrado)
-                        print(f"La comision del vendedor con id {id_ven} es de ${comision}")
+                        print(f"+ Vendedor {vendedor_encontrado.nombre} con identificacion {vendedor_encontrado.num_ident} \nValor de comision: ${comision}")
+                        print("----------------------------------------")
                     else:
                         print("El vehiculo no esta en el sistema, verifique")
                         break
@@ -359,10 +383,15 @@ while True:
                         if isinstance(ident, AutoUsado) and ident.id_usado == id_car:
                             auto_encontrado = ident
                     if auto_encontrado:
-                        venta = auto_encontrado.calcular_valor_venta()
-                        print(f"Venta del vehiculo con id {id_car} es de ${venta}")
+                        venta = auto_encontrado.calcular_valor_comercial()
+                        print("----------------------------------------")
+                        print(f"+ Vehiculo {auto_encontrado.marca} identificado con {id_car}\nValor de venta: ${venta}\n")
                         comision = vendedor_encontrado.calcular_comision(auto_encontrado)
-                        print(f"La comision del vendedor con id {id_ven} es de ${comision}")
+                        if comision < 0:
+                            print(f"Vendedor {vendedor_encontrado.nombre} con identificacion {vendedor_encontrado.num_ident} \n No comisionó rey")
+                        else:
+                            print(f"+ Vendedor {vendedor_encontrado.nombre} con identificacion {vendedor_encontrado.num_ident} \nValor de comision: ${comision}")
+                        print("----------------------------------------")
                     else:
                         print("El vehiculo no esta en el sistema, verifique")
                         break
@@ -387,9 +416,11 @@ while True:
                             moto_encontrada = ident
                     if moto_encontrada:
                         venta = moto_encontrada.calcular_valor_venta()
-                        print(f"Venta de la moto con id {id_mot} es de ${venta}")
-                        comision = vendedor_encontrado.calcular_comision(auto_encontrado)
-                        print(f"La comision del vendedor con id {id_ven} es de ${comision}")
+                        print("----------------------------------------")
+                        print(f"+ Moto {moto_encontrada.marca} identificada con {id_mot}\nValor de venta: ${venta}\n")
+                        comision = vendedor_encontrado.calcular_comision(moto_encontrada)
+                        print(f"+ Vendedor {vendedor_encontrado.nombre} con identificacion {vendedor_encontrado.num_ident} \nValor de comision: ${comision}")
+                        print("----------------------------------------")
                     else:
                         print("La moto no esta en el sistema, verifique")
                         break
@@ -413,10 +444,15 @@ while True:
                         if isinstance(ident, MotoUsada) and ident.id_usada == id_mot:
                             moto_encontrada = ident
                     if moto_encontrada:
-                        venta = moto_encontrada.calcular_valor_venta()
-                        print(f"Venta de la moto con id {id_mot} es de ${venta}")
-                        comision = vendedor_encontrado.calcular_comision(auto_encontrado)
-                        print(f"La comision del vendedor con id {id_ven} es de ${comision}")
+                        venta = moto_encontrada.calcular_valor_comercial()
+                        print("----------------------------------------")
+                        print(f"+ Moto {moto_encontrada.marca} identificada con {id_mot}\nValor de venta: ${venta}\n")
+                        comision = vendedor_encontrado.calcular_comision(moto_encontrada)
+                        if comision < 0:
+                            print(f"Vendedor {vendedor_encontrado.nombre} con identificacion {vendedor_encontrado.num_ident} \n No comisionó rey")
+                        else:
+                            print(f"+ Vendedor {vendedor_encontrado.nombre} con identificacion {vendedor_encontrado.num_ident} \nValor de comision: ${comision}")
+                        print("----------------------------------------")
                     else:
                         print("La moto no esta en el sistema, verifique")
                         break
@@ -448,19 +484,21 @@ while True:
                 for ident in clientes:
                     if isinstance(ident, Cliente) and ident.id_cliente == id_cli:
                         cliente_encontrado = ident
-                if cliente_encontrado:
-                    print("-------------------------------------------------------------------")
-                    print(f"Cliente: {cliente_encontrado.nombre}")                
+                if cliente_encontrado:           
                     for ident in autosClientes:
                         if isinstance(ident, AutoCliente) and ident.id_car == id_veh:
                             auto_encontrado = ident
                     if auto_encontrado:
-                        print(f"Vehiculo: {auto_encontrado.marca}")
                         auto_encontrado.actualizar_estado_vehiculo()
                         if auto_encontrado.estado == "En reparacion":
                             orden_servicio = OrdenDeServicio(id_ord, id_cli, id_veh, descripcion_problema)
                             ordenes_servicio.append(orden_servicio)
-                            orden_servicio.ver_orden() 
+                            print("----------------------------------------")
+                            print("Detalles de la orden de servicio...")
+                            print(f"Cliente: {cliente_encontrado.nombre}") 
+                            print(f"Vehiculo: {auto_encontrado.marca}")
+                            orden_servicio.ver_orden()
+                            print("----------------------------------------")
 
                         # Asignar orden de servicio a un mecánico
                         asignar = asignar_orden_servicio_mecanico(orden_servicio, mecanicos)
@@ -487,9 +525,13 @@ while True:
                     if isinstance(ident, OrdenDeServicio) and ident.id_orden == id_ord:
                         orden_encontrada = ident
                 if orden_encontrada:
+                    print("----------------------------------------")
                     orden_encontrada.ver_orden()
+                    print("----------------------------------------")
                     orden_encontrada.actualizar_estado_orden()
+                    print("----------------------------------------")
                     orden_encontrada.ver_orden()
+                    print("----------------------------------------")
                     
                 else:
                     print("La orden no esta registrada en el sistema, verifique")
